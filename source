@@ -1,0 +1,35 @@
+////////////////////////////////////////////////////////////////////////////////
+//	toHex().  Convert a string to hex.
+////////////////////////////////////////////////////////////////////////////////
+function toHex(s)
+{
+	var l = "0123456789ABCDEF";
+	var o = "";
+
+	if( typeof s != "string" ){ s = s.toString(); }
+	for( var i=0; i<s.length; i++ ){
+		var c = s.charCodeAt(i);
+
+		o = o + l[(c>>4)] + l[(c & 0xf)];
+		}
+
+	return o;
+}
+////////////////////////////////////////////////////////////////////////////////
+//	fromHex().  Convert a hex string to ascii text OR a numeric value.
+////////////////////////////////////////////////////////////////////////////////
+function fromHex(s)
+{
+	o = "";
+	if( typeof s != "string" ){ s = s.toString(); }
+	for( var i=0; i<s.length; i+=2 ){
+		var hi = s.charCodeAt(i);
+		var lo = s.charCodeAt(i+1);
+
+		hi = ((hi < 65) ? hi - 48 : hi - 55) << 4;
+		lo = (lo < 65) ? lo - 48 : lo - 55;
+		o = o + String.fromCharCode(hi + lo);
+		}
+
+	return o;
+}
