@@ -1,5 +1,14 @@
+// Functions: toHex() and fromHex()
+//
+// This is hereby placed under the GNU Greater License with these changes: 1)You
+// may use this code anyway you want. 2)These function may be used in both commercial
+// and non-commercial software, and 3)You must include and/or display the copyright
+// message.
 ////////////////////////////////////////////////////////////////////////////////
-//	toHex().  Convert a string to hex.
+////////////////////////////////////////////////////////////////////////////////
+//	toHex().  Convert a string to hexadecimal.
+//	Copyrighted (c) 1992-2015 by Mark Manning (markem@sim1.us)
+//	Used with permission
 ////////////////////////////////////////////////////////////////////////////////
 function toHex(s)
 {
@@ -16,7 +25,9 @@ function toHex(s)
 	return o;
 }
 ////////////////////////////////////////////////////////////////////////////////
-//	fromHex().  Convert a hex string to ascii text OR a numeric value.
+//	fromHex().  Convert a hex string to ascii text.
+//	Copyrighted (c) 1992-2015 by Mark Manning (markem@sim1.us)
+//	Used with permission
 ////////////////////////////////////////////////////////////////////////////////
 function fromHex(s)
 {
