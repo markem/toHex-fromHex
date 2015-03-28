@@ -1,9 +1,10 @@
+////////////////////////////////////////////////////////////////////////////////
 // Functions: toHex() and fromHex()
 //
 // This is hereby placed under the GNU Greater License with these changes: 1)You
 // may use this code anyway you want. 2)These function may be used in both commercial
 // and non-commercial software, and 3)You must include and/or display the copyright
-// message.
+// message.  Note: You can remove this first set of comments if you want.
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //	toHex().  Convert a string to hexadecimal.
