@@ -10,6 +10,11 @@
 //	toHex().  Convert an ASCII string to hexadecimal.
 //	Copyrighted (c) 1992-2015 by Mark Manning (markem@sim1.us)
 //	Used with permission
+//
+//	Notes: If you always want to know when something has been changed to
+//		hex, simply change the return statement to:
+//
+//		return "0x" + o;
 ////////////////////////////////////////////////////////////////////////////////
 function toHex(s)
 {
@@ -29,10 +34,24 @@ function toHex(s)
 //	fromHex().  Convert a hex string to ascii text.
 //	Copyrighted (c) 1992-2015 by Mark Manning (markem@sim1.us)
 //	Used with permission
+//
+//	Notes: If you use the "0x" prefix be sure to also add in here
+//		var start = 0;
+//
+//		and
+//
+//		if( s.substr(0,2) == "0x" ){ start = 2; }
+//
+//		and change the FOR statement to
+//
+//		for( var i=start; i<s.length; i+=2 ){
+//
+//		So the program can handle both with and without the "0x" prefix.
 ////////////////////////////////////////////////////////////////////////////////
 function fromHex(s)
 {
-	o = "";
+	var o = "";
+
 	if( typeof s != "string" ){ s = s.toString(); }
 	for( var i=0; i<s.length; i+=2 ){
 		var hi = s.charCodeAt(i);
