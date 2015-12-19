@@ -25,8 +25,8 @@ but I believe it will be faster than some of the other functions I have seen.
 You can include these into an object (to keep them from colliding with other functions of the same name)
 by just doing this:
 
-if( typeof <OBJ>.toHex == "undefined" ){
-<OBJ>.toHex = function(s)
+if( typeof &lt;OBJ>.toHex == "undefined" ){
+&lt;OBJ>.toHex = function(s)
 {
    ...
 }
@@ -34,8 +34,8 @@ if( typeof <OBJ>.toHex == "undefined" ){
 
 and
 
-if( typeof <OBJ>.fromHex == "undefined" ){
-<OBJ>.fromHex = function(s)
+if( typeof &lt;OBJ>.fromHex == "undefined" ){
+&lt;OBJ>.fromHex = function(s)
 {
    ...
 }
