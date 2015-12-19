@@ -36,11 +36,8 @@ function toHex(s)
 //	Used with permission
 //
 //	Notes: If you use the "0x" prefix be sure to also add in here
-//		var start = 0;
 //
-//		and
-//
-//		if( s.substr(0,2) == "0x" ){ start = 2; }
+//		var start = (s.substr(0,2) == "0x") ? 2 : ((s.substr(0,2) == "0X") ? 2 : 0);
 //
 //		and change the FOR statement to
 //
