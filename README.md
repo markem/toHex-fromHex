@@ -42,3 +42,15 @@ if( typeof &lt;OBJ>.fromHex == "undefined" ){
 }
 
 Have fun! :-)
+
+# utHex-ufHex
+
+Several people asked me to expand upon the hex functions so
+they would accept unicode also.  Instead, I decided to just
+make two new functions to handle unicode.  The Javascript
+function charCodeAt() actually already returns a unicode
+character (16 bits) so all that had to be done was to take
+the upper eight bits into account.  In all other ways,
+utHex() and ufHex() function exactly like the toHex()
+and fromHex() functions.
+
