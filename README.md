@@ -54,3 +54,4 @@ the upper eight bits into account.  In all other ways,
 utHex() and ufHex() function exactly like the toHex()
 and fromHex() functions.
 
+I also went ahead and put the "0x" onto the front of the returning string so it is known that it is a hexadecimal string.  Also made the unhex functions check for an incoming "0x".
