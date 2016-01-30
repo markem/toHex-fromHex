@@ -1,20 +1,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Functions: toHex() and fromHex()
 //
-// This is hereby placed under the GNU Greater License with these changes: 1)You
-// may use this code anyway you want. 2)These function may be used in both commercial
-// and non-commercial software, and 3)You must include and/or display the copyright
-// message.  Note: You can remove this first set of comments if you want.
+//	I have changed the license to the MIT license.  This code is available for
+//	any usage you want to make of it include personal, commercial, or any other
+//	usage you wish.  The only requirement is that you display my copyright
+//	somewhere such as in the documentation or your ABOUT screen.  This first
+//	comment section can be removed if you want.
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //	toHex().  Convert an ASCII string to hexadecimal.
 //	Copyrighted (c) 1992-2015 by Mark Manning (markem@sim1.us)
 //	Used with permission
-//
-//	Notes: If you always want to know when something has been changed to
-//		hex, simply change the return statement to:
-//
-//		return "0x" + o;
 ////////////////////////////////////////////////////////////////////////////////
 function toHex(s)
 {
@@ -25,38 +21,83 @@ function toHex(s)
 	for( var i=0; i<s.length; i++ ){
 		var c = s.charCodeAt(i);
 
-		o = o + l[(c>>4)] + l[(c & 0xf)];
+		o = o + l[(c>>4) & 0x0f] + l[(c & 0x0f)];
 		}
 
-	return o;
+	return "0x" + o;
 }
 ////////////////////////////////////////////////////////////////////////////////
 //	fromHex().  Convert a hex string to ascii text.
 //	Copyrighted (c) 1992-2015 by Mark Manning (markem@sim1.us)
 //	Used with permission
-//
-//	Notes: If you use the "0x" prefix be sure to also add in here
-//
-//		var start = (s.substr(0,2) == "0x") ? 2 : ((s.substr(0,2) == "0X") ? 2 : 0);
-//
-//		and change the FOR statement to
-//
-//		for( var i=start; i<s.length; i+=2 ){
-//
-//		So the program can handle both with and without the "0x" prefix.
 ////////////////////////////////////////////////////////////////////////////////
 function fromHex(s)
 {
 	var o = "";
 
 	if( typeof s != "string" ){ s = s.toString(); }
-	for( var i=0; i<s.length; i+=2 ){
+	var start = (s.substr(0,2) == "0x") ? 2 : ((s.substr(0,2) == "0X") ? 2 : 0);
+
+	for( var i=start; i<s.length; i+=2 ){
 		var hi = s.charCodeAt(i);
 		var lo = s.charCodeAt(i+1);
 
 		hi = ((hi < 65) ? hi - 48 : hi - 55) << 4;
 		lo = (lo < 65) ? lo - 48 : lo - 55;
-		o = o + String.fromCharCode(hi + lo);
+		o = o + String.fromCharCode(hi | lo);
+		}
+
+	return o;
+}
+////////////////////////////////////////////////////////////////////////////////
+//	utHex(). Unicode(utf8) To Hexadecimal.
+//	Copyrighted (c) 1992-2015 by Mark Manning (markem@sim1.us)
+//	Used with permission
+//
+//	A function to convert unicode into hexadecimal.
+////////////////////////////////////////////////////////////////////////////////
+function utHex(s)
+{
+	var l = "0123456789ABCDEF";
+	var o = "";
+
+	if( typeof s != "string" ){ s = s.toString(); }
+	for( var i=0; i<s.length; i++ ){
+		var c = s.charCodeAt(i);
+		var b1 = (c>>8) &0xff;
+		var b2 = c & 0xff;
+
+		o = o + l[(b1>>4) & 0x0f] + l[(b1 & 0x0f)] + l[(b2>>4) & 0x0f] + l[(b2 & 0x0f)];
+		}
+
+	return "0x" + o;
+}
+////////////////////////////////////////////////////////////////////////////////
+//	ufHex().  Unicode(utf8) FROM Hexadecimal routine.
+//	Copyrighted (c) 1992-2015 by Mark Manning (markem@sim1.us)
+//	Used with permission
+//
+//	Convert a hexadecimal string to unicode.
+////////////////////////////////////////////////////////////////////////////////
+function ufHex(s)
+{
+	var o = "";
+
+	if( typeof s != "string" ){ s = s.toString(); }
+	var start = (s.substr(0,2) == "0x") ? 2 : ((s.substr(0,2) == "0X") ? 2 : 0);
+
+	for( var i=start; i<s.length; i+=4 ){
+		var b1_hi = s.charCodeAt(i);
+		var b1_lo = s.charCodeAt(i+1);
+		var b2_hi = s.charCodeAt(i+2);
+		var b2_lo = s.charCodeAt(i+3);
+
+		b1_hi = ((hi < 65) ? hi - 48 : hi - 55) << 16;
+		b1_lo = (lo < 65) ? lo - 48 : lo - 55 << 8;
+		b2_hi = ((hi < 65) ? hi - 48 : hi - 55) << 4;
+		b2_lo = (lo < 65) ? lo - 48 : lo - 55;
+
+		o = o + String.fromCharCode(b1_hi | b1_lo | b2_hi | b2_lo);
 		}
 
 	return o;
